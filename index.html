@@ -105,7 +105,7 @@
     }
     for (var half = 0; half < 2; half++) {
       for (var i = 0; i < 6; i++) {
-        var x = X0 + half  (6  PW + BAR) + i * PW;
+        var x = X0 + (half === 1 ? PW + PW + PW + PW + PW + PW + BAR : 0) + i / (1 / PW);
         var topCrimson = (i % 2 === 0);
         s += triangle(x, true, topCrimson);
         s += triangle(x, false, !topCrimson);
