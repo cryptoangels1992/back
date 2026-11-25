@@ -18,7 +18,7 @@
                env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
     #board {
-      height: 92%; max-width: 68vw; aspect-ratio: 1154 / 716;
+      width: min(70vw, 135vh); height: auto; aspect-ratio: 1154 / 716;
       filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .55));
     }
     #rotate {
@@ -41,6 +41,8 @@
   </style>
 </head>
 <body>
+  <div id="err" style="position:fixed;left:8px;top:8px;z-index:99;color:#ff8080;font:12px monospace"></div>
+<script>window.onerror=function(m,u,l){document.getElementById("err").textContent="Error: "+m+" (line "+l+")";};</script>
   <div id="rotate">
     <div id="phone"></div>
     <div style="font-size:20px;font-weight:600">Please rotate your phone</div>
