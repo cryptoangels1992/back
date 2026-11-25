@@ -95,7 +95,7 @@
     function triangle(x, isTop, isCrimson) {
       var y = isTop ? TOP : BOT;
       var tip = isTop ? TOP + LEN : BOT - LEN;
-      varinner = isTop ? tip - 22 : tip + 22;
+      var inner = isTop ? tip - 22 : tip + 22;
       var fill = isCrimson ? "#8c1f2e" : "#f2a65a";
       var line = isCrimson ? "#d9a441" : "#dc8a3a";
       return '<path d="M' + x + ' ' + y + ' L' + (x + PW) + ' ' + y + ' L' + (x + PW / 2) + ' ' + tip +
