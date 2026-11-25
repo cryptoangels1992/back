@@ -114,7 +114,42 @@
 
     // Edge glow
     s += '<rect x="76" y="10" width="1002" height="698" fill="url(#vignette)"/>';
+// Checkers
+s += '<defs>' +
+  '<radialGradient id="chLight" cx=".4" cy=".35" r=".75">' +
+    '<stop offset="0" stop-color="#c98262"/><stop offset=".7" stop-color="#a65d40"/>' +
+    '<stop offset="1" stop-color="#7d3f28"/></radialGradient>' +
+  '<radialGradient id="chDark" cx=".4" cy=".35" r=".75">' +
+    '<stop offset="0" stop-color="#3a1a12"/><stop offset=".7" stop-color="#1a0a06"/>' +
+    '<stop offset="1" stop-color="#0a0302"/></radialGradient>' +
+  '</defs>';
 
+function colX(half, i) {
+  var cx = X0 + PW / 2;
+  if (half === 1) { cx += 465 + BAR; }
+  for (var n = 0; n < i; n++) { cx += PW; }
+  return cx;
+}
+
+function stack(half, i, onTop, color, count) {
+  var cx = colX(half, i);
+  var cy = onTop ? TOP + 36 : BOT - 36;
+  for (var k = 0; k < count; k++) {
+    s += '<circle cx="' + cx + '" cy="' + (cy + 3) + '" r="34" fill="#000" opacity=".35"/>';
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="34" fill="url(#' + (color === "light" ? "chLight" : "chDark") + ')"/>';
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="26" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="2"/>';
+    cy += onTop ? 54 : -54;
+  }
+}
+
+stack(0, 0, false, "light", 5);
+stack(0, 0, true, "dark", 5);
+stack(0, 4, true, "light", 3);
+stack(0, 4, false, "dark", 3);
+stack(1, 0, true, "light", 5);
+stack(1, 0, false, "dark", 5);
+stack(1, 5, true, "dark", 2);
+stack(1, 5, false, "light", 2);
     document.getElementById("board").innerHTML = s;
   </script>
 </body>
